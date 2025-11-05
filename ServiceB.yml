@@ -3,8 +3,4 @@ greeting: Hello from Service B
 server:
   port: 8091
 
-management:
-  endpoints: 
-    web: 
-      exposure:
-        include: refresh
+
