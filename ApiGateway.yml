@@ -1,0 +1,28 @@
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: productsModule
+              uri: lb://ProductService
+              predicates:
+                - Path=/product/**
+            - id: stockModule
+              uri: lb://StockService
+              predicates:
+                - Path=/stock/**
+  server:
+    port: 8080
+
+otlp:
+  tracing:
+    endpoint: http://localhost:9411/api/v2/spans  # Zipkin endpoint
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
